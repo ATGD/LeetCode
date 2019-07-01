@@ -1,4 +1,4 @@
-package Problem26_删除排序数组中的重复项;
+package Problem_0026_删除排序数组中的重复项;
 
 import java.util.HashMap;
 

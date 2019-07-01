@@ -1,4 +1,4 @@
-package Problem784_字母大小写全排列;
+package Problem_0784_字母大小写全排列;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package Problem355_设计推特;
+package Problem_0355_设计推特;
 
 import java.util.HashMap;
 

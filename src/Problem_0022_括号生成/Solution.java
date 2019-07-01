@@ -1,4 +1,4 @@
-package Problem22_括号生成;
+package Problem_0022_括号生成;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package Problem692_前k个高频词汇;
+package Problem_0692_前k个高频词汇;
 
 import java.util.HashMap;
 

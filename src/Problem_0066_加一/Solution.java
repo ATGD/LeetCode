@@ -1,4 +1,4 @@
-package Problem66_加一;
+package Problem_0066_加一;
 
 import java.util.HashMap;
 

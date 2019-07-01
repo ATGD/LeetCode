@@ -1,4 +1,4 @@
-package Problem67_二进制求和;
+package Problem_0067_二进制求和;
 
 import java.util.HashMap;
 

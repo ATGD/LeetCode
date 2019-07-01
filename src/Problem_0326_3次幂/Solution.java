@@ -1,4 +1,4 @@
-package Problem326_3次幂;
+package Problem_0326_3次幂;
 
 import java.util.HashMap;
 

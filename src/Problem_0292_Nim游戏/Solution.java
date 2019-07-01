@@ -1,4 +1,4 @@
-package Problem292_Nim游戏;
+package Problem_0292_Nim游戏;
 
 import java.util.HashMap;
 

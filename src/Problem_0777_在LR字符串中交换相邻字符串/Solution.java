@@ -1,4 +1,4 @@
-package Problem777_在LR字符串中交换相邻字符串;
+package Problem_0777_在LR字符串中交换相邻字符串;
 
 import java.util.HashMap;
 

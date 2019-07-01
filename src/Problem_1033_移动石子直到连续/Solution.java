@@ -1,4 +1,4 @@
-package Problem1033_移动石子直到连续;
+package Problem_1033_移动石子直到连续;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package Problem70_爬楼梯;
+package Problem_0070_爬楼梯;
 
 import java.util.HashMap;
 

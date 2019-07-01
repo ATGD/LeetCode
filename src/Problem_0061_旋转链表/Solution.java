@@ -1,4 +1,4 @@
-package Problem61_旋转链表;
+package Problem_0061_旋转链表;
 
 import java.util.HashMap;
 

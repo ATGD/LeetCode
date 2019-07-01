@@ -1,4 +1,4 @@
-package Problem41_缺失的第一个正数;
+package Problem_0041_缺失的第一个正数;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package Problem69_x的平方根;
+package Problem_0069_x的平方根;
 
 import java.util.HashMap;
 

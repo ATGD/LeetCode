@@ -1,4 +1,4 @@
-package Problem892_三维形体的表面积;
+package Problem_0892_三维形体的表面积;
 
 import java.util.HashMap;
 

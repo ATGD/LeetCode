@@ -1,4 +1,4 @@
-package Problem45_跳跃游戏2;
+package Problem_0045_跳跃游戏2;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package Problem319_灯泡开关;
+package Problem_0319_灯泡开关;
 
 import java.util.HashMap;
 

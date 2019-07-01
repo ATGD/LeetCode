@@ -1,4 +1,4 @@
-package Problem29_两数相除;
+package Problem_0029_两数相除;
 
 import java.util.HashMap;
 

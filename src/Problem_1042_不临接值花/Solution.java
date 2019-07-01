@@ -1,4 +1,4 @@
-package Problem1042_不临接值花;
+package Problem_1042_不临接值花;
 
 import java.util.HashMap;
 
