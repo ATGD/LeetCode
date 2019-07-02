@@ -2,21 +2,21 @@ package Problem_0007_整数反转;
 
 import java.util.HashMap;
 
-public class Solution {
+class Solution {
+    public int reverse(int x) {
+        long sum = 0L;//累加起来的反转数
+        int temp = Math.abs(x);//计算当前位数
+        while ((x / 10) != 0) {
 
-    public int[] twoSum(int[] nums, int target) {
-        int[] r = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target - nums[i])) {
-                r[0] = i;
-                r[1] = map.get(target - nums[i]);
-                return r;
-            }
-            map.put(nums[i], i);
+            temp = x % 10;
+            sum = sum * 10 + temp;
+            x = x / 10;
         }
-
-        return new int[]{0, 0};
+        sum = sum * 10 + x % 10;
+        if (sum > Integer.MAX_VALUE || sum < Integer.MIN_VALUE) {
+            return 0;
+        }
+        return (int) sum;
     }
 }
 
