@@ -1,4 +1,4 @@
-package Problem_0802_找到最终的安全状态;
+package Timeout_Problem_0802_找到最终的安全状态;
 
 import java.util.*;
 
@@ -39,6 +39,9 @@ class Solution {
         for (int j = 0; j < integers.size(); j++) {
             if (deadSet.contains(integers.get(j))) {
                 deadSet.add(i);
+                for (Integer integer : linkedSet) {
+                    deadSet.add(integer);
+                }
                 return true;
             } else {
                 Set<Integer> tempSet = new HashSet<>(linkedSet);
@@ -48,6 +51,9 @@ class Solution {
                     if (deadNode) {
                         deadSet.add(i);
                         deadSet.add(integers.get(j));
+                        for (Integer integer : linkedSet) {
+                            deadSet.add(integer);
+                        }
                         return deadNode;
                     }
                 }
