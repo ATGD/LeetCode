@@ -14,7 +14,7 @@ board =
 给定 word = "ABCCED", 返回 true.
 给定 word = "SEE", 返回 true.
 给定 word = "ABCB", 返回 false.
-```
+```++++++++++++++++++++++++++
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/word-search
