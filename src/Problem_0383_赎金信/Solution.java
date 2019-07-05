@@ -1,4 +1,4 @@
-package Problem_0355_赎金信;
+package Problem_0383_赎金信;
 
 public class Solution {
 
