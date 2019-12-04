@@ -26,7 +26,7 @@ class Solution {
     }
 }
 
-class Text {
+class Test {
     public static void main(String[] args) {
         String[] ocurrences = new Solution().findOcurrences("alice is a good girl she is a good student", "a", "good");
         System.out.println(ocurrences);

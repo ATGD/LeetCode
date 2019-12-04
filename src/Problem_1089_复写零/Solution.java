@@ -24,7 +24,7 @@ class Solution {
     }
 }
 
-class Text {
+class Test {
     public static void main(String[] args) {
         int[] ints = new int[]{1,7,0,3,7,0,2,0,3,7};
         new Solution().duplicateZeros(ints);
