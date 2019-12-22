@@ -1,4 +1,4 @@
-package Problem_0119_杨辉三角;
+package Problem_0119_杨辉三角2;
 
 import java.util.ArrayList;
 import java.util.List;
