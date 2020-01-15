@@ -10,6 +10,8 @@ package Problem_0538_把二叉搜索树转换为累加树;
  * }
  */
 
+import ext.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -34,15 +36,6 @@ class Solution {
     }
 
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 }
 
 class Test {

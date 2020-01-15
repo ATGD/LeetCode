@@ -1,5 +1,7 @@
 package Problem_0543_二叉树的直径;
 
+import ext.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -26,16 +28,6 @@ class Solution {
             max[0] = leftDeep + rightDeep;
         }
         return maxChild + 1;
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
 
