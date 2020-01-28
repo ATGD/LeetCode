@@ -2,64 +2,63 @@ package Problem_1202_交换字符串中的元素;
 
 import ext.ArrayConvert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 class Solution {
-    List<List<Integer>> swapSetList = new ArrayList<>();
+
 
     public String smallestStringWithSwaps(String s, List<List<Integer>> pairs) {
-        swapSetList.clear();
+        List<Set<Integer>> swapSetList = new ArrayList<>();
         for (List<Integer> pair : pairs) {
-            Integer value1 = pair.get(0);
-            Integer value2 = pair.get(1);
-            List<Integer> contains1 = find(value1);
-            List<Integer> contains2 = find(value2);
-            if (contains1 != null && contains2 != null) {
-                if (contains1 != contains2)
-                    merge(contains1, contains2);
-            } else if (contains1 == null && contains2 == null)
-                swapSetList.add(new ArrayList<>(Arrays.asList(value1, value2)));
-            else {
-                if (contains1 != null)
-                    contains1.add(value2);
-                else
-                    contains2.add(value1);
-            }
+            if (pair.get(0) == pair.get(1)) continue;
+            add(pair, swapSetList);
         }
         char[] chars = s.toCharArray();
-        for (List<Integer> list : swapSetList) {
-            for (int i = 0; i < list.size() - 1; i++) {
-                for (int j = i + 1; j < list.size(); j++) {
-                    if (list.get(i) > list.get(j)) {
-                        if (chars[i] < chars[j]) {
-                            char temp = chars[i];
-                            chars[i] = chars[j];
-                            chars[j] = temp;
-                        }
-                    } else if (list.get(i) < list.get(j)) {
-                        if (chars[i] > chars[j]) {
-                            char temp = chars[i];
-                            chars[i] = chars[j];
-                            chars[j] = temp;
-                        }
-                    }
-                }
+        for (Set<Integer> set : swapSetList) {
+            List<Integer> list = new ArrayList<>(set);
+            Collections.sort(list);
+            int[] words = new int[26];
+            for (int i = 0; i < list.size(); i++)
+                words[chars[list.get(i)] - 'a']++;
+            int index = 0;
+            for (Integer position : list) {
+                while (words[index] <= 0) index++;
+                chars[position] = (char) ('a' + index);
+                words[index]--;
             }
         }
         return new String(chars);
     }
 
+    private void add(List<Integer> pair, List<Set<Integer>> swapSetList) {
+        Set<Integer> contains1 = find(pair.get(0), swapSetList);
+        Set<Integer> contains2 = find(pair.get(1), swapSetList);
+        if (contains1 != null && contains2 != null) {
+            if (contains1 != contains2)
+                merge(contains1, contains2, swapSetList);
+        } else if (contains1 == null && contains2 == null) {
+            Set<Integer> tmpList = new HashSet<>();
+            tmpList.add(pair.get(0));
+            tmpList.add(pair.get(1));
+            swapSetList.add(tmpList);
+        } else {
+            if (contains1 != null)
+                contains1.add(pair.get(1));
+            else
+                contains2.add(pair.get(0));
+        }
+    }
 
-    private List<Integer> find(int value) {
-        for (List<Integer> pair : swapSetList) {
-            if (pair.contains(value)) return pair;
+
+    private Set<Integer> find(int value, List<Set<Integer>> swapSetList) {
+        for (Set<Integer> pair : swapSetList) {
+            if (pair.contains(value))
+                return pair;
         }
         return null;
     }
 
-    private void merge(List<Integer> list1, List<Integer> list2) {
+    private void merge(Set<Integer> list1, Set<Integer> list2, List<Set<Integer>> swapSetList) {
         list1.addAll(list2);
         swapSetList.remove(list2);
     }
@@ -68,9 +67,9 @@ class Solution {
 
 class Test {
     public static void main(String[] args) {
-        String str = new Solution().smallestStringWithSwaps("dcab",
+        String str = new Solution().smallestStringWithSwaps("udyyek",
                 ArrayConvert.array2To(new Integer[][]{
-                        {0, 3}, {1, 2}, {0, 2}
+                        {3, 3}, {3, 0}, {5, 1}, {3, 1}, {3, 4}, {3, 5}
                 }));
         System.out.println(str);
     }
