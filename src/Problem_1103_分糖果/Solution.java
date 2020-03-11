@@ -20,7 +20,7 @@ class Solution {
     }
 }
 
-class Text {
+class Test {
     public static void main(String[] args) {
         int[] ints = new Solution().distributeCandies(10, 3);
         System.out.println(ints);
