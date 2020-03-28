@@ -1,21 +1,27 @@
 package Problem_0746_使用最小花费爬楼梯;
 
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
-        Map<Integer, Integer> map = new HashMap<>();
-        return getMinRouteStep(cost, 0, map);
+        Integer[] stepMap = new Integer[cost.length];
+        return getMinRouteStep(cost, -1, stepMap);
     }
 
-    private int getMinRouteStep(int[] cost, int i, Map<Integer, Integer> stepMap) {
+    private int getMinRouteStep(int[] cost, int i, Integer[] stepMap) {
         if (i >= cost.length) return 0;
-        return Math.min(
-                cost[i] + getMinRouteStep(cost, i + 1, stepMap),
-                ((i + 1 >= cost.length) ? 0 : cost[i + 1])
-                        + getMinRouteStep(cost, i + 2, stepMap)
-        );
+        int step1, step2;
+        if (i + 1 < stepMap.length && stepMap[i + 1] != null) step1 = stepMap[i + 1];
+        else {
+            step1 = getMinRouteStep(cost, i + 1, stepMap);
+            if (i + 1 < stepMap.length)
+                stepMap[i + 1] = step1;
+        }
+        if (i + 2 < stepMap.length && stepMap[i + 2] != null) step2 = stepMap[i + 2];
+        else {
+            step2 = getMinRouteStep(cost, i + 2, stepMap);
+            if (i + 2 < stepMap.length)
+                stepMap[i + 2] = step2;
+        }
+        return (i >= 0 ? cost[i] : 0) + Math.min(step1, step2);
     }
 }
 

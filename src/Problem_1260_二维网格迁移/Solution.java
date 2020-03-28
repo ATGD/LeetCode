@@ -5,33 +5,26 @@ import java.util.List;
 
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
-        int totalLength = grid.length * grid[0].length;
-        k %= totalLength;
-        for (int i = 0; i < k; i++) {
-            int positionLimit = totalLength + k;
-            int tempPosition = i;
-            Integer tempValue = null;
-            while (tempPosition < positionLimit) {
-                int after = tempPosition + k;
-                after %= totalLength;
-                int forthValue = grid[after / grid[0].length][after % grid[0].length];
-                grid[after / grid[0].length][after % grid[0].length] = grid[tempPosition / grid[0].length][tempPosition % grid[0].length];
-                if (tempValue != null) {
-                    grid[tempPosition / grid[0].length][tempPosition % grid[0].length] = tempValue;
-                }
-                tempValue = forthValue;
-                tempPosition += k;
-            }
+        int row = grid.length;
+        int column = grid[0].length;
+        int length = row * column;
+        int startIndex = length - k % length;
+        int[] originArray = new int[length];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++)
+                originArray[i * column + j] = grid[i][j];
         }
-        List<List<Integer>> gridList = new ArrayList<>();
-        for (int i = 0; i < grid.length; i++) {
-            List<Integer> list = new ArrayList<>();
-            for (int j = 0; j < grid[0].length; j++) {
-                list.add(grid[i][j]);
+        List<List<Integer>> result = new ArrayList<>();
+        int shuldAddPosition = startIndex;
+        for (int i = 0; i < row; i++) {
+            List<Integer> itemList = new ArrayList<>();
+            for (int j = 0; j < column; j++) {
+                itemList.add(originArray[shuldAddPosition % length]);
+                shuldAddPosition++;
             }
-            gridList.add(list);
+            result.add(itemList);
         }
-        return gridList;
+        return result;
     }
 }
 
@@ -42,7 +35,7 @@ class Test {
                 {5, 6, 7, 8},
                 {9, 10, 11, 12}
         };
-        List<List<Integer>> lists = new Solution().shiftGrid(arrays, 1);
+        List<List<Integer>> lists = new Solution().shiftGrid(arrays, 13);
         System.out.println(lists);
     }
 }
