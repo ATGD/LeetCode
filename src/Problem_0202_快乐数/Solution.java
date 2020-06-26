@@ -4,6 +4,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 class Solution {
+
+    /**
+     * 1    1
+     * 2    4
+     * 3    9
+     * 4    6
+     * 5    5
+     * 6    6
+     * 7    9
+     * 8    4
+     * 9    1
+     */
     /**
      * 1,2,3 = 14
      * 1,4 = 17

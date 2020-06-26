@@ -1,45 +1,56 @@
-### [993\. 二叉树的堂兄弟节点](https://leetcode-cn.com/problems/cousins-in-binary-tree/)
+### [990\. 等式方程的可满足性](https://leetcode-cn.com/problems/satisfiability-of-equality-equations/)
 
-Difficulty: **简单**
+Difficulty: **中等**
 
 
-在二叉树中，根节点位于深度 `0` 处，每个深度为 `k` 的节点的子节点位于深度 `k+1` 处。
+给定一个由表示变量之间关系的字符串方程组成的数组，每个字符串方程 `equations[i]` 的长度为 `4`，并采用两种不同的形式之一：`"a==b"` 或 `"a!=b"`。在这里，a 和 b 是小写字母（不一定不同），表示单字母变量名。
 
-如果二叉树的两个节点深度相同，但**父节点不同**，则它们是一对_堂兄弟节点_。
+只有当可以将整数分配给变量名，以便满足所有给定的方程时才返回 `true`，否则返回 `false`。 
 
-我们给出了具有唯一值的二叉树的根节点 `root`，以及树中两个不同节点的值 `x` 和 `y`。
-
-只有与值 `x` 和 `y` 对应的节点是堂兄弟节点时，才返回 `true`。否则，返回 `false`。
-
-**示例 1：  
-![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/q1248-01.png)**
+**示例 1：**
 
 ```
-输入：root = [1,2,3,4], x = 4, y = 3
+输入：["a==b","b!=a"]
 输出：false
+解释：如果我们指定，a = 1 且 b = 1，那么可以满足第一个方程，但无法满足第二个方程。没有办法分配变量同时满足这两个方程。
 ```
 
-**示例 2：  
-![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/q1248-02.png)**
+**示例 2：**
 
 ```
-输入：root = [1,2,3,null,4,null,5], x = 5, y = 4
-输出：true
+输出：["b==a","a==b"]
+输入：true
+解释：我们可以指定 a = 1 且 b = 1 以满足满足这两个方程。
 ```
 
 **示例 3：**
 
-**![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/q1248-03.png)**
+```
+输入：["a==b","b==c","a==c"]
+输出：true
+```
+
+**示例 4：**
 
 ```
-输入：root = [1,2,3,null,4], x = 2, y = 3
+输入：["a==b","b!=c","c==a"]
 输出：false
+```
+
+**示例 5：**
+
+```
+输入：["c==c","b==d","x!=z"]
+输出：true
 ```
 
 **提示：**
 
-1.  二叉树的节点数介于 `2` 到 `100` 之间。
-2.  每个节点的值都是唯一的、范围为 `1` 到 `100` 的整数。
+1.  `1 <= equations.length <= 500`
+2.  `equations[i].length == 4`
+3.  `equations[i][0]` 和 `equations[i][3]` 是小写字母
+4.  `equations[i][1]` 要么是 `'='`，要么是 `'!'`
+5.  `equations[i][2]` 是 `'='`
 
 
 #### Solution
@@ -47,5 +58,5 @@ Difficulty: **简单**
 Language: **Java**
 
 ```java
-
+​
 ```

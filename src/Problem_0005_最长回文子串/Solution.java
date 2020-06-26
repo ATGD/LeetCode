@@ -1,55 +1,45 @@
 package Problem_0005_最长回文子串;
 
-import java.util.HashMap;
 
 class Solution {
+    private Integer[][] memo;
+    private String longest = "";
+
     public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0)
-            return "";
-        int max = 0;
-        int start = 0;
-        int end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j > i; j--) {
-                if (s.charAt(i) == s.charAt(j)) {
-                    boolean isPalindrome = true;
-                    int tempLeft = i;
-                    int tempRight = j;
-                    int length = j - i + 1;
-                    if (length % 2 == 1) {
-                        while ((tempRight - tempLeft) != 2) {
-                            tempLeft++;
-                            tempRight--;
-                            if (s.charAt(tempLeft) != s.charAt(tempRight)) {
-                                isPalindrome = false;
-                                break;
-                            }
-                        }
-                    } else {
-                        while ((tempRight - tempLeft) != 1) {
-                            tempLeft++;
-                            tempRight--;
-                            if (s.charAt(tempLeft) != s.charAt(tempRight)) {
-                                isPalindrome = false;
-                                break;
-                            }
-                        }
-                    }
-                    if ((length > max) && isPalindrome) {
-                        start = i;
-                        end = j;
-                        max = length;
-                        if (max == s.length()) {
-                            return s;
-                        }
-                    }
-                }
-            }
+        memo = new Integer[s.length()][s.length()];
+        longestPalindrome(s, 0, s.length() - 1);
+        return longest;
+    }
+
+    private int longestPalindrome(String s, int start, int end) {
+        if (start > end) return 0;
+        if (start == end) {
+            compareStr(s, start, end);
+            return 1;
         }
-        if (max == 0) {
-            return s.substring(0, 1);
+        if (memo[start][end] != null) return memo[start][end];
+        if (s.charAt(start) == s.charAt(end) &&
+                longestPalindrome(s, start + 1, end - 1) == (end - start - 1)
+        ) {
+            memo[start][end] = end - start + 1;
+            compareStr(s, start, end);
+        } else {
+            int result1 = longestPalindrome(s, start + 1, end);
+            int result2 = longestPalindrome(s, start, end - 1);
+            memo[start][end] = Math.max(result1, result2);
         }
-        return s.substring(start, end + 1);
+        return memo[start][end];
+    }
+
+    private void compareStr(String s, int start, int end) {
+        if (end - start + 1 > longest.length()) longest = s.substring(start, end + 1);
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        String result = new Solution().longestPalindrome("kasjdfkjasdfababababababaaskdjfklasdjfka");
+        System.out.println(result);
     }
 }
 

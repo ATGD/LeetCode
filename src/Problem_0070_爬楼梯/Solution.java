@@ -1,22 +1,26 @@
 package Problem_0070_爬楼梯;
 
-import java.util.HashMap;
-
-public class Solution {
-
-    public int[] twoSum(int[] nums, int target) {
-        int[] r = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target - nums[i])) {
-                r[0] = i;
-                r[1] = map.get(target - nums[i]);
-                return r;
-            }
-            map.put(nums[i], i);
+class Solution {
+    public int climbStairs(int n) {
+        int i = 1;
+        int j = 1;
+        int tmpN = 1;
+        if (n == 0) return 0;
+        while (tmpN < n) {
+            int tmp = i + j;
+            i = j;
+            j = tmp;
+            tmpN++;
         }
-
-        return new int[]{0, 0};
+        return j;
     }
 }
 
+class Test{
+    //1,1,2,3,5,8,13
+    //0,1,2,3,4,5,6
+    public static void main(String[] args) {
+        int i = new Solution().climbStairs(6);
+        System.out.println(i);
+    }
+}

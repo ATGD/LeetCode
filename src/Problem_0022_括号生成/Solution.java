@@ -1,22 +1,39 @@
 package Problem_0022_括号生成;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Solution {
+class Solution {
+    List<String> results = new ArrayList<>();
 
-    public int[] twoSum(int[] nums, int target) {
-        int[] r = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target - nums[i])) {
-                r[0] = i;
-                r[1] = map.get(target - nums[i]);
-                return r;
-            }
-            map.put(nums[i], i);
+    public List<String> generateParenthesis(int n) {
+        recursionGeneratePar(new StringBuilder(), n, n);
+        return results;
+    }
+
+    private void recursionGeneratePar(StringBuilder s, int l, int r) {
+        if (l > r) return;
+        if (l < 0 || r < 0) return;
+        if (l == r && l == 0) {
+            results.add(s.toString());
+            return;
         }
+        for (int i = 0; i <= l; i++) {
+            int start = s.length();
+            for (int j = 0; j < i; j++) {
+                s.append('(');
+            }
+            s.append(')');
+            recursionGeneratePar(s, l - i, r - 1);
+            s.delete(start, start + i + 1);
+        }
+    }
+}
 
-        return new int[]{0, 0};
+class Test {
+    public static void main(String[] args) {
+        List<String> strings = new Solution().generateParenthesis(5);
+        System.out.println(strings);
     }
 }
 

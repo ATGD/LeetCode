@@ -1,22 +1,29 @@
 package Problem_0084_柱状图中的最大矩形;
 
-import java.util.HashMap;
+import java.util.Stack;
 
-public class Solution {
+class Solution {
 
-    public int[] twoSum(int[] nums, int target) {
-        int[] r = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target - nums[i])) {
-                r[0] = i;
-                r[1] = map.get(target - nums[i]);
-                return r;
-            }
-            map.put(nums[i], i);
-        }
-
-        return new int[]{0, 0};
+    public int largestRectangleArea(int[] heights) {
+//        Stack<Integer> stack = new Stack<>();
+//        int maxArea = Integer.MIN_VALUE;
+//        int index = 0;
+//        int tempIndex = 0;
+//        while (index < heights.length) {
+//            if (stack.isEmpty()) {
+//                tempIndex = index;
+//                stack.add(index);
+//            } else {
+//                if (heights[index] >= heights[tempIndex]) {
+//                    stack.add(heights[index]);
+//                } else {
+//
+//                }
+//            }
+//            index++;
+//        }
+        return 0;
     }
+
 }
 

@@ -1,98 +1,50 @@
 package Problem_0079_单词搜索;
 
 class Solution {
+    int[][] directs = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    boolean[][] hasWalk;
+
     public boolean exist(char[][] board, String word) {
-        if (word == null || word == "")
-            return true;
-        boolean[][] marked = new boolean[board.length][board[0].length];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == word.charAt(0)) {
-                    boolean[][] clone = new boolean[marked.length][marked[0].length];
-                    for (int i1 = 0; i1 < clone.length; i1++) {
-                        clone[i1] = marked[i1].clone();
-                    }
-                    clone[i][j] = true;
-                    boolean b = hasWord(i, j, board, word, 1, clone);
-                    if (b)
-                        return b;
+        char[] words = word.toCharArray();
+        if (null == word || word.length() == 0) return false;
+        hasWalk = new boolean[board.length][board[0].length];
+        for (int row = 0; row < board.length; row++) {
+            for (int column = 0; column < board[row].length; column++) {
+                if (board[row][column] == words[0]) {
+                    boolean result = hasContains(board, row, column, word, 0);
+                    if (result) return true;
                 }
             }
         }
         return false;
     }
 
-    private boolean hasWord(int row, int col, char[][] board, String word, int indexPrepare, boolean[][] clone) {
-        if (indexPrepare >= word.length())
-            return true;
-        if (row > 0) {
-            if (board[row - 1][col] == word.charAt(indexPrepare) &&
-                    clone[row - 1][col] != true) {
-                boolean[][] cloneRe = new boolean[clone.length][clone[0].length];
-                for (int i1 = 0; i1 < cloneRe.length; i1++) {
-                    cloneRe[i1] = clone[i1].clone();
-                }
-                cloneRe[row - 1][col] = true;
-                boolean b = hasWord(row - 1, col, board, word, indexPrepare + 1, cloneRe);
-                if (b) {
-                    return b;
-                }
-            }
-        }
-        if (col > 0) {
-            if (board[row][col - 1] == word.charAt(indexPrepare) &&
-                    clone[row][col - 1] != true) {
-                boolean[][] cloneRe = new boolean[clone.length][clone[0].length];
-                for (int i1 = 0; i1 < cloneRe.length; i1++) {
-                    cloneRe[i1] = clone[i1].clone();
-                }
-                cloneRe[row][col - 1] = true;
-                boolean b = hasWord(row, col - 1, board, word, indexPrepare + 1, cloneRe);
-                if (b) {
-                    return b;
-                }
-            }
-        }
-        if (row < board.length - 1) {
-            if (board[row + 1][col] == word.charAt(indexPrepare) &&
-                    clone[row + 1][col] != true) {
-                boolean[][] cloneRe = new boolean[clone.length][clone[0].length];
-                for (int i1 = 0; i1 < cloneRe.length; i1++) {
-                    cloneRe[i1] = clone[i1].clone();
-                }
-                cloneRe[row + 1][col] = true;
-                boolean b = hasWord(row + 1, col, board, word, indexPrepare + 1, cloneRe);
-                if (b) {
-                    return b;
-                }
-            }
-        }
-        if (col < board[0].length - 1) {
-            if (board[row][col + 1] == word.charAt(indexPrepare) &&
-                    clone[row][col + 1] != true) {
-                boolean[][] cloneRe = new boolean[clone.length][clone[0].length];
-                for (int i1 = 0; i1 < cloneRe.length; i1++) {
-                    cloneRe[i1] = clone[i1].clone();
-                }
-                cloneRe[row][col + 1] = true;
-                boolean b = hasWord(row, col + 1, board, word, indexPrepare + 1, cloneRe);
-                if (b) {
-                    return b;
-                }
-            }
+    private boolean hasContains(char[][] board, int row, int column, String word, int wordIndex) {
+        if (wordIndex >= word.length()) return true;
+        if (!isInRange(board, row, column) || board[row][column] != word.charAt(wordIndex)) return false;
+        if (hasWalk[row][column]) return false;
+        for (int[] direct : directs) {
+            hasWalk[row][column] = true;
+            boolean result = hasContains(board, row + direct[0], column + direct[1], word, wordIndex + 1);
+            if (result) return true;
+            hasWalk[row][column] = false;
         }
         return false;
+    }
+
+    private boolean isInRange(char[][] board, int row, int column) {
+        return row >= 0 && row < board.length && column >= 0 && column < board[0].length;
     }
 }
 
 class Test {
     public static void main(String[] args) {
         char[][] board = new char[][]{
-                {'C', 'A', 'A'},
-                {'A', 'A', 'A'},
-                {'B', 'C', 'D'}
+                {'A','B','C'},
+                {'A','B','C'},
+                {'A','B','C'},
         };
-        boolean asa = new Solution().exist(board, "AAB");
+        boolean asa = new Solution().exist(board, "ABCCBA");
         System.out.println(asa);
     }
 }

@@ -24,6 +24,11 @@ class Solution {
         return (i >= 0 ? cost[i] : 0) + Math.min(step1, step2);
     }
 }
+//0,0
+//1,0
+//100,1
+//101,2
+//3,2
 
 class Test {
     public static void main(String[] args) {
