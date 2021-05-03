@@ -7,24 +7,38 @@ public class QuickSort {
     }
 
     private void sort(int[] nums, int left, int right) {
-        if (left > right) return;
-        int base = nums[left];
-        int i = left, j = right;
-        while (i < j) {
-            while (nums[j] >= base && i < j) j--;
-            while (nums[i] <= base && i < j) i++;
-            if (i < j) {
-                int tmp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = tmp;
+        if (left < right) {
+            int i = left;
+            int j = right;
+            int base = nums[left];
+            while (i < j) {
+                while (i < j && nums[j] >= base) {
+                    j--;
+                }
+                if (i < j) {
+                    nums[i++] = nums[j];
+                }
+                while (i < j && nums[i] <= base) {
+                    i++;
+                }
+                if (i < j) {
+                    nums[j--] = nums[i];
+                }
             }
+            nums[i] = base;
+            sort(nums, left, i - 1);
+            sort(nums, i + 1, right);
         }
+    }
+}
 
-        //将基数放到中间位置（基数归位）
-        nums[left] = nums[i];
-        nums[i] = base;
-
-        sort(nums, left, i - 1);
-        sort(nums, j + 1, right);
+class Test {
+    public static void main(String[] args) {
+        QuickSort quickSort = new QuickSort();
+        int[] nums = {
+                0,1,0,1,0,1,0,1,1,0,0,1,1,0,1,0,1
+        };
+        quickSort.quickSort(nums);
+        System.out.println(nums);
     }
 }
